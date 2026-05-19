@@ -136,7 +136,7 @@ export default function Login() {
           <div className="flex justify-center mb-4">
             <ShoppingBag className="h-16 w-16 text-indigo-800" strokeWidth={2} />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800">TREND-CAPS</h1>
+          <h1 className="text-3xl font-bold text-gray-800">ONLINESHOP</h1>
           <p className="text-gray-600 mt-2">Estilo y calidad en cada gorra</p>
         </div>
 

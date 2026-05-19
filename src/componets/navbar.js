@@ -153,7 +153,7 @@ class CapstyleNavbar extends HTMLElement {
             <nav>
                 <a href="/" class="logo">
                     ${getIcon('shopping-bag')}
-                    Trend-Caps
+                    OnlineShop
                 </a>
                 
                 <div class="nav-links">

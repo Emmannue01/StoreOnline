@@ -76,7 +76,7 @@ export default function RegisterForm() {
             <ShoppingBag className="h-16 w-16 text-indigo-800" strokeWidth={2} />
           </div>
           <h1 className="text-3xl font-bold text-gray-800">Crear Cuenta</h1>
-          <p className="text-gray-600 mt-2">TREND-CAPS</p>
+          <p className="text-gray-600 mt-2">ONLINESHOP</p>
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit}>

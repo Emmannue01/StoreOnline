@@ -111,7 +111,7 @@ class CapstyleFooter extends HTMLElement {
                 <div class="footer-about">
                     <div class="footer-logo">
                         <i data-feather="shopping-bag"></i>
-                        Trend-Caps
+                        OnlineShop
                     </div>
                     <p class="footer-description">
                         Tu destino para encontrar las mejores gorras y ropa de moda. Calidad y estilo en un solo lugar.
@@ -150,7 +150,7 @@ class CapstyleFooter extends HTMLElement {
             </footer>
             
             <div class="footer-bottom">
-                &copy; ${new Date().getFullYear()} Trend-Caps. Todos los derechos reservados.
+                &copy; ${new Date().getFullYear()} OnlineShop. Todos los derechos reservados.
             </div>
         `;
         
