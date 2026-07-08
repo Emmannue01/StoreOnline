@@ -498,9 +498,9 @@ const handleFilterClick = (filter) => {
       <main className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <section className="hero bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-8 mb-12 text-white">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Estilo que Destaca</h1>
-            <p className="text-xl mb-6">Descubre nuestra exclusiva colección de gorras y ropa para cada ocasión.</p>
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Tu Papelería Creativa</h1>
+            <p className="text-xl mb-6">Encuentra todo lo que necesitas para dar vida a tus ideas. Calidad y variedad en un solo lugar.</p>
             <a href="#products" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-block">Ver Colección</a>
           </div>
         </section>
@@ -529,7 +529,7 @@ const handleFilterClick = (filter) => {
         {/* Offers Section */}
         {offerProducts.length > 0 && (
             <section id="offers" className="mb-12">
-                <h2 className="text-2xl font-bold mb-6 text-red-600">🔥 Ofertas Especiales</h2>
+                <h2 className="text-2xl font-bold mb-6 text-red-600">Ofertas Especiales</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {offerProducts.map(product => (
                         <product-card

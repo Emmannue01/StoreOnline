@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, ShoppingBag } from 'lucide-react';
+import { Mail, Notebook } from 'lucide-react';
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../firebase.js';
 import { Link } from 'react-router-dom';
@@ -42,7 +42,7 @@ export default function ForgotPasswordForm() {
       <div className="w-full max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <ShoppingBag className="h-16 w-16 text-indigo-800" strokeWidth={2} />
+            <Notebook className="h-16 w-16 text-indigo-800" strokeWidth={2} />
           </div>
           <h1 className="text-3xl font-bold text-gray-800">Recuperar Contraseña</h1>
           <p className="text-gray-600 mt-2">Ingresa tu correo para recibir un enlace de restablecimiento.</p>

@@ -114,7 +114,7 @@ class CapstyleFooter extends HTMLElement {
                         OnlineShop
                     </div>
                     <p class="footer-description">
-                        Tu destino para encontrar las mejores gorras y ropa de moda. Calidad y estilo en un solo lugar.
+                        
                     </p>
                     <div class="social-links">
                         <a href="#"><i data-feather="facebook"></i></a>
@@ -141,7 +141,7 @@ class CapstyleFooter extends HTMLElement {
                             <li><a href="#">Preguntas Frecuentes</a></li>
                             <li><a href="#">Envíos y Devoluciones</a></li>
                             <li><a href="#">Guía de Tallas</a></li>
-                            <li><a href="#">Contacto</a></li>
+                           
                         </ul>
                     </div>
                     

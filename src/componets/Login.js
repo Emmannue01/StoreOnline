@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Mail, Lock, ShoppingBag } from 'lucide-react';
+import { Mail, Lock, Notebook } from 'lucide-react';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, getRedirectResult, signInWithRedirect } from "firebase/auth";
 import { auth,db } from '../firebase.js';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -134,10 +134,10 @@ export default function Login() {
       <div className="w-full max-w-md mx-auto p-8 bg-white rounded-xl shadow-lg">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <ShoppingBag className="h-16 w-16 text-indigo-800" strokeWidth={2} />
+            <Notebook className="h-16 w-16 text-indigo-800" strokeWidth={2} />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800">ONLINESHOP</h1>
-          <p className="text-gray-600 mt-2">Estilo y calidad en cada gorra</p>
+          <h1 className="text-3xl font-bold text-gray-800">Papelería Creativa</h1>
+          <p className="text-gray-600 mt-2">Todo lo que necesitas para tus ideas</p>
         </div>
 
         <form className="space-y-6" onSubmit={handleSubmit}>

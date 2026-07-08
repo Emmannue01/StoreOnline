@@ -15,6 +15,7 @@ const InventoryManager = () => {
   const [showModal, setShowModal] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [formData, setFormData] = useState({ name: '', price: '', salePrice: '', stock: '', category: '', image: '' });
+  const [hasVariants, setHasVariants] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
   const [isUploading, setIsUploading] = useState(false);
@@ -45,6 +46,7 @@ const InventoryManager = () => {
     setEditingProduct(null);
     setImageFile(null);
     setImagePreview('');
+    setHasVariants(false);
     setIsUploading(false);
   };
 
@@ -77,14 +79,7 @@ const InventoryManager = () => {
         name: formData.name,
         price: parseFloat(formData.price),
         salePrice: formData.salePrice ? parseFloat(formData.salePrice) : null,
-        stock: formData.category === 'playeras'
-            ? {
-                S: parseInt(formData.stock.S || 0, 10),
-                M: parseInt(formData.stock.M || 0, 10),
-                L: parseInt(formData.stock.L || 0, 10),
-                XL: parseInt(formData.stock.XL || 0, 10),
-              }
-            : parseInt(formData.stock || 0, 10),
+        stock: hasVariants ? Object.fromEntries(Object.entries(formData.stock).map(([key, value]) => [key, parseInt(value || 0, 10)])) : parseInt(formData.stock || 0, 10),
         category: formData.category,
         image: imageUrl,
       };
@@ -137,16 +132,16 @@ const InventoryManager = () => {
 
   const openEditModal = (product) => {
     setEditingProduct(product);
-    const stockData = (product.category === 'playeras' && typeof product.stock !== 'object')
-        ? { S: 0, M: 0, L: 0, XL: 0 } // Fallback for old data
-        : product.stock;
-    setFormData({ ...product, stock: stockData, salePrice: product.salePrice || '' });
+    const isVariant = typeof product.stock === 'object' && product.stock !== null;
+    setHasVariants(isVariant);
+    setFormData({ ...product, stock: product.stock, salePrice: product.salePrice || '' });
     setImagePreview(product.image || '');
     setShowModal(true);
   };
 
   const openNewModal = () => {
     resetForm();
+    setHasVariants(false);
     setShowModal(true);
   };
 
@@ -235,12 +230,6 @@ const InventoryManager = () => {
                   <label className="block text-sm font-medium text-gray-700">Precio de Oferta</label>
                   <input type="number" step="0.01" className="mt-1 w-full border rounded-md p-2" value={formData.salePrice} onChange={e => setFormData({ ...formData, salePrice: e.target.value })} placeholder="Opcional" />
                 </div>
-                {formData.category !== 'playeras' && (
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Stock</label>
-                    <input type="number" required className="mt-1 w-full border rounded-md p-2" value={formData.stock} onChange={e => setFormData({ ...formData, stock: e.target.value })} />
-                  </div>
-                )}
               </div>
 
               <div>
@@ -249,11 +238,7 @@ const InventoryManager = () => {
                   required 
                   className="mt-1 w-full border rounded-md p-2 bg-white" 
                   value={formData.category} 
-                  onChange={e => {
-                    const newCategory = e.target.value;
-                    const newStock = newCategory === 'playeras' ? { S: 0, M: 0, L: 0, XL: 0 } : '';
-                    setFormData({ ...formData, category: newCategory, stock: newStock });
-                  }}
+                  onChange={e => setFormData({ ...formData, category: e.target.value })}
                 >
                   <option value="">Selecciona una categoría</option>
                   {categories.map(cat => (
@@ -263,26 +248,39 @@ const InventoryManager = () => {
                   ))}
                 </select>
               </div>
-              {formData.category === 'playeras' && (
+              
+              <div className="flex items-center">
+                <input 
+                  type="checkbox" 
+                  id="has-variants" 
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  checked={hasVariants}
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    setHasVariants(checked);
+                    setFormData({...formData, stock: checked ? { '': '' } : ''});
+                  }}
+                />
+                <label htmlFor="has-variants" className="ml-2 block text-sm text-gray-900">Este producto tiene variantes (ej. color, tamaño)</label>
+              </div>
+
+              {hasVariants ? (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Stock por Talla</label>
-                  <div className="grid grid-cols-4 gap-2 mt-1">
-                    {['S', 'M', 'L', 'XL'].map(size => (
-                      <div key={size}>
-                        <label htmlFor={`stock-${size}`} className="block text-xs font-medium text-gray-500 text-center">{size}</label>
-                        <input
-                          id={`stock-${size}`}
-                          type="number"
-                          value={typeof formData.stock === 'object' ? formData.stock[size] || '' : ''}
-                          onChange={e => {
-                            const newStock = { ...(typeof formData.stock === 'object' ? formData.stock : {}), [size]: e.target.value };
-                            setFormData({ ...formData, stock: newStock });
-                          }}
-                          className="w-full border rounded-md p-2 text-center"
-                        />
+                  <label className="block text-sm font-medium text-gray-700">Stock por Variante</label>
+                  <div className="space-y-2 mt-1">
+                    {Object.entries(typeof formData.stock === 'object' && formData.stock !== null ? formData.stock : { '': '' }).map(([variant, count], index) => (
+                      <div key={index} className="flex gap-2">
+                        <input type="text" placeholder="Nombre Variante (ej. Rojo)" value={variant} onChange={(e) => { const newStock = { ...formData.stock }; delete newStock[variant]; newStock[e.target.value] = count; setFormData({ ...formData, stock: newStock }); }} className="w-full border rounded-md p-2" />
+                        <input type="number" placeholder="Stock" value={count} onChange={(e) => setFormData({ ...formData, stock: { ...formData.stock, [variant]: e.target.value } })} className="w-1/3 border rounded-md p-2" />
                       </div>
                     ))}
+                    <button type="button" onClick={() => setFormData({ ...formData, stock: { ...formData.stock, '': '' } })} className="text-sm text-blue-600 hover:underline">Añadir variante</button>
                   </div>
+                </div>
+              ) : (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Stock</label>
+                  <input type="number" required className="mt-1 w-full border rounded-md p-2" value={formData.stock} onChange={e => setFormData({ ...formData, stock: e.target.value })} />
                 </div>
               )}
               <div>

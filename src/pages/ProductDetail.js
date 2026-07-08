@@ -97,7 +97,7 @@ const ProductDetail = () => {
             </div>
             <p className="text-gray-700 mb-6 flex-grow">{product.description || 'Este producto no tiene una descripción detallada.'}</p>
             <div className="mt-auto">
-              {typeof product.stock === 'object' ? (<button onClick={() => window.dispatchEvent(new CustomEvent('select-size', { detail: { ...product, productId: product.id } }))} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">Seleccionar Talla</button>) : (<button onClick={handleAddToCart} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">Añadir al Carrito</button>)}
+              {typeof product.stock === 'object' ? (<button onClick={() => window.dispatchEvent(new CustomEvent('select-size', { detail: { ...product, productId: product.id } }))} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">Seleccionar Variante</button>) : (<button onClick={handleAddToCart} className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors">Añadir al Carrito</button>)}
             </div>
           </div>
         </div>

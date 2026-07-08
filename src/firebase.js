@@ -6,13 +6,13 @@ import { getFunctions, httpsCallable } from 'firebase/functions';
 import { getDatabase } from 'firebase/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB-dMhgHglAMdtrpOhss5X6ll3yg_iFueY",
-  authDomain: "developers-a5e3f.firebaseapp.com",
-  projectId: "developers-a5e3f",
-  storageBucket: "developers-a5e3f.firebasestorage.app",
-  messagingSenderId: "804977383960",
-  appId: "1:804977383960:web:b1a720976423edf7d7c16d",
-  measurementId: "G-3V29MVD8NL"
+    apiKey: "AIzaSyAbkubJfXmDY1ES9xa-su70rniJXopx124",
+  authDomain: "papeleria-5d63c.firebaseapp.com",
+  projectId: "papeleria-5d63c",
+  storageBucket: "papeleria-5d63c.firebasestorage.app",
+  messagingSenderId: "889211141031",
+  appId: "1:889211141031:web:745e7bb2b6a230f6a69482",
+  measurementId: "G-XMJT4M5DSJ"
 };
 
 

@@ -1,8 +1,8 @@
-# StoreOnline
+# Papelería Online
 
 ## Descripción
 
-StoreOnline es una tienda en línea desarrollada con React que incluye dos tipos de usuarios: cliente y administrador.
+Papelería Online es una tienda en línea desarrollada con React que incluye dos tipos de usuarios: cliente y administrador.
 
 - Clientes pueden explorar productos, ver detalles, agregar artículos al carrito, registrarse, iniciar sesión y realizar pedidos.
 - Administradores pueden gestionar inventario, categorías, pedidos, cupones y acceder a un punto de venta para control de ventas e inventario.
@@ -93,4 +93,4 @@ http://localhost:3000
 
 ---
 
-Desarrollado como una tienda en línea con funcionalidades tanto para clientes como para administradores.
+Desarrollado como una tienda de papelería en línea con funcionalidades tanto para clientes como para administradores.
